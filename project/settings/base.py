@@ -113,7 +113,9 @@ DECIMAL_SEPARATOR = ','
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'global/static/'
+    BASE_DIR / 
+    'global/static/',
+    '/static/',
 ]
 STATIC_ROOT = BASE_DIR / 'static'
 
