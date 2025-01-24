@@ -24,3 +24,7 @@ from django.views.generic import TemplateView
 
 class HomeView(TemplateView):
     template_name = 'recipes/pages/home.html'
+
+
+class RecipesView(TemplateView):
+    template_name = 'recipes/pages/recipe-view.html'
