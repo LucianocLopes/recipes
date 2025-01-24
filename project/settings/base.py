@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     # 3td apps
     # my apps
+    'recipes',
 ]
 
 MIDDLEWARE = [
