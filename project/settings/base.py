@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     # 3td apps
     # my apps
     'recipes',
+    'tag',
 ]
 
 MIDDLEWARE = [
