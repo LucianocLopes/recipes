@@ -21,6 +21,11 @@ USER = get_user_model()
 class Category(models.Model):
     name = models.CharField(max_length=65)
 
+    class Meta:
+        verbose_name = _('Category')
+        verbose_name_plural = _('Categories')
+
+
     def __str__(self):
         return self.name
 
@@ -38,7 +43,7 @@ class RecipeManager(models.Manager):
         ) \
             .order_by('-id') \
             .select_related('category', 'author') \
-            # .prefetch_related('tags')
+            .prefetch_related('tags')
 
 
 class Recipe(models.Model):
@@ -64,7 +69,7 @@ class Recipe(models.Model):
     author = models.ForeignKey(
         USER, on_delete=models.SET_NULL, null=True
     )
-    tags = models.ManyToManyField(Tag, blank=True, default='')
+    tags = models.ManyToManyField(Tag, blank=True, default='', null=True)
 
     def __str__(self):
         return self.title
@@ -74,7 +79,7 @@ class Recipe(models.Model):
 
     @staticmethod
     def resize_image(image, new_width=800):
-        image_full_path = BASE_DIR / (settings.MEDIA_ROOT, image.name)
+        image_full_path = settings.MEDIA_ROOT / image.name
         image_pillow = Image.open(image_full_path)
         original_width, original_height = image_pillow.size
 
