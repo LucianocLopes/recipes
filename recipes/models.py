@@ -4,7 +4,7 @@ from collections import defaultdict
 from random import SystemRandom
 from project.settings.base import BASE_DIR
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models import F, Value
 from django.db.models.functions import Concat
@@ -15,6 +15,8 @@ from django.utils.translation import gettext_lazy as _
 from PIL import Image
 from tag.models import Tag
 
+
+USER = get_user_model()
 
 class Category(models.Model):
     name = models.CharField(max_length=65)
@@ -60,7 +62,7 @@ class Recipe(models.Model):
         default=None,
     )
     author = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True
+        USER, on_delete=models.SET_NULL, null=True
     )
     tags = models.ManyToManyField(Tag, blank=True, default='')
 
