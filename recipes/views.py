@@ -44,8 +44,8 @@ class RecipeListViewBase(ListView):
         qs = qs.filter(
             is_published=True,
         )
-        qs = qs.select_related('author', 'category', 'author__profile')
-        qs = qs.prefetch_related('tags')
+        # qs = qs.select_related('author', 'category', 'author__profile')
+        # qs = qs.prefetch_related('tags')
         return qs
 
     def get_context_data(self, *args, **kwargs):
@@ -60,7 +60,7 @@ class RecipeListViewBase(ListView):
 
         ctx.update(
             {
-                'recipes': page_obj,
+                'recipes_page': page_obj,
                 'pagination_range': pagination_range,
                 'html_language': html_language,
             }
